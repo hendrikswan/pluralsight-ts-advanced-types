@@ -13,7 +13,10 @@
       "sourceMaps": true,
       "cwd": "${workspaceRoot}",
       "protocol": "inspector",
-      "env": { "TS_NODE_PROJECT": "${workspaceRoot}/tsconfig.json" }
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceRoot}/tsconfig.json",
+        "ROOT": "${workspaceRoot}"
+      }
     }
     // {
     //   "name": "Current TS File",

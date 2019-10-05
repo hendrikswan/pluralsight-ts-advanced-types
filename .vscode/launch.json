@@ -12,7 +12,29 @@
       "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
       "sourceMaps": true,
       "cwd": "${workspaceRoot}",
-      "protocol": "inspector"
+      "protocol": "inspector",
+      "env": { "TS_NODE_PROJECT": "${workspaceRoot}/tsconfig.json" }
     }
+    // {
+    //   "name": "Current TS File",
+    //   "type": "node",
+    //   "request": "launch",
+    //   // "args": ["${relativeFile}"],
+    //   // "runtimeArgs": [
+    //   //   "--nolazy",
+    //   //   "-r",
+    //   //   "ts-node/register",
+    //   //   "--project",
+    //   //   "${workspaceRoot}/tsconfig.json"
+    //   // ],
+    //   // "sourceMaps": true,
+    //   // "cwd": "${workspaceRoot}",
+    //   // "protocol": "inspector",
+    //   // "env": { "TS_NODE_PROJECT": "${workspaceRoot}/tsconfig.json" }
+
+    //   "program": "${workspaceFolder}/${relativeFile}",
+    //   "preLaunchTask": "tsc: build - tsconfig.json",
+    //   "outFiles": ["${workspaceFolder}/.ts-out/**/*.js"]
+    // }
   ]
 }

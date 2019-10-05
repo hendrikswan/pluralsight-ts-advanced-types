@@ -16,7 +16,6 @@ export interface Position {
 export interface Layer {
   id: string;
   type: LayerType;
-  opacity: number;
   rotation: number;
   center: Position;
   size: Size;

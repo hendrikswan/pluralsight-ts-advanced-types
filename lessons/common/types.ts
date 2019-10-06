@@ -3,6 +3,11 @@ export interface Size {
   height: number;
 }
 
+export interface Constraint {
+  width?: number;
+  height?: number;
+}
+
 export enum LayerType {
   Text,
   Image
@@ -17,8 +22,7 @@ export interface Layer {
   id: string;
   type: LayerType;
   rotation: number;
-  center: Position;
-  size: Size;
+  position: Position;
 }
 
 export interface TextLayer extends Layer {
@@ -26,11 +30,14 @@ export interface TextLayer extends Layer {
 
   text: string;
   color: string;
+  fontSize: number;
+  maxWidth: number;
 }
 
 export interface ImageLayer extends Layer {
   type: LayerType.Image;
   src: string;
+  maxBounds: Constraint;
 }
 
 export interface Project {

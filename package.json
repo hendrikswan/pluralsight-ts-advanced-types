@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "canvas": "^2.6.0",
+    "image-size": "^0.8.3",
     "open": "^6.4.0",
     "ts-node": "^8.4.1",
     "tslib": "^1.10.0",

@@ -8,29 +8,29 @@ import {
 import { render } from "../common/render";
 
 const projectSize: Size = {
-  width: 1024,
-  height: 768
+  width: 512,
+  height: 250
 };
 
 const textLayer: TextLayer = {
   type: LayerType.Text,
   maxWidth: 1000,
-  position: { x: 100, y: 100 },
-  color: "#000",
+  position: { x: 128, y: 208 },
+  color: "#e8166d",
   id: "10",
   rotation: 0,
-  text: "Hello world, I am a text layer",
-  fontSize: 30
+  text: "Advanced TypeScript",
+  fontSize: 20
 };
 
 const imageLayer: ImageLayer = {
   type: LayerType.Image,
 
-  position: { x: 10, y: 10 },
+  position: { x: 0, y: 0 },
   id: "20",
   rotation: 0,
   src: "ps-dark.png",
-  maxBounds: { width: projectSize.width * 0.7 }
+  maxBounds: { width: projectSize.width }
 };
 
 const project: Project = {

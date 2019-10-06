@@ -3,8 +3,9 @@ import { createCanvas, loadImage, Canvas } from "canvas";
 import process from "process";
 import fs from "fs";
 import open from "open";
-var { promisify } = require("util");
-var sizeOf = promisify(require("image-size"));
+// import imageSize from "image-size";
+// const sizeOf = require("image-size");
+const probe = require("probe-image-size");
 
 const BASE_IMAGE_PATH = `${process.env.ROOT}/lessons/common/images`;
 
@@ -17,19 +18,42 @@ function isImageLayer(layer: Layer): layer is ImageLayer {
 }
 
 async function renderImage(canvas: Canvas, layer: ImageLayer) {
-  // const imageSize = sizeOf();
   const ctx = canvas.getContext("2d");
   const imagePath = `${BASE_IMAGE_PATH}/${layer.src}`;
   console.log("Loading image with path ", imagePath);
-  const image = await loadImage(imagePath);
 
-  console.log("got the image ", image);
-  ctx.drawImage(image, 50, 0, 70, 70);
+  const fileBuffer = fs.readFileSync(imagePath);
+
+  const image = await loadImage(fileBuffer);
+
+  const imageSize = probe.sync(fileBuffer);
+
+  const maxScaleSize = {
+    width: layer.maxBounds.width || imageSize.height,
+    height: layer.maxBounds.height || imageSize.height
+  };
+
+  const scale = Math.min(
+    maxScaleSize.height / imageSize.height,
+    maxScaleSize.width / imageSize.width
+  );
+
+  console.log("scale: ", maxScaleSize);
+  console.log("imagesize: ", imageSize);
+
+  ctx.drawImage(
+    image,
+    layer.position.x,
+    layer.position.y,
+    scale * imageSize.width,
+    scale * imageSize.height
+  );
 }
 
 async function renderText(canvas: Canvas, layer: TextLayer) {
   const ctx = canvas.getContext("2d");
   ctx.font = `${layer.fontSize}px Helvetica Arial`;
+  ctx.fillStyle = layer.color;
   ctx.fillText(layer.text, layer.position.x, layer.position.y, layer.maxWidth);
 }
 

@@ -56,7 +56,7 @@ async function renderText(canvas: Canvas, layer: TextLayer) {
 
 async function exportPng(canvas: Canvas) {
   return new Promise(resolve => {
-    const fileName = __dirname + "/test2.png";
+    const fileName = __dirname + "/../../out.png";
 
     const out = fs.createWriteStream(fileName);
     const stream = canvas.createPNGStream();

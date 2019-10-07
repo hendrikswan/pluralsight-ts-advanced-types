@@ -38,9 +38,6 @@ async function renderImage(canvas: Canvas, layer: ImageLayer) {
     maxScaleSize.width / imageSize.width
   );
 
-  console.log("scale: ", maxScaleSize);
-  console.log("imagesize: ", imageSize);
-
   ctx.drawImage(
     image,
     layer.position.x,

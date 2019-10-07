@@ -30,7 +30,7 @@ export interface TextLayer extends Layer {
 
   text: string;
   color: string;
-  fontSize: number;
+  fontSize: string;
   maxWidth: number;
 }
 

@@ -33,9 +33,19 @@ const imageLayer: ImageLayer = {
   maxBounds: { width: projectSize.width }
 };
 
+function setFontSize(layer: TextLayer, value: string | number) {
+  if (typeof value === "number") {
+    layer.fontSize = `${value}px`;
+  } else {
+    layer.fontSize = value;
+  }
+}
+
 const project: Project = {
   layers: [imageLayer, textLayer],
   size: projectSize
 };
+
+setFontSize(textLayer, "20em");
 
 render(project);

@@ -1,5 +1,11 @@
-import { Project, TextLayer, ImageLayer, LayerType, Size } from "./types";
-import { render } from "./render";
+import {
+  Project,
+  TextLayer,
+  ImageLayer,
+  LayerType,
+  Size
+} from "../common/types";
+import { render } from "../3-Differentiate-between-Types-with-Type-Guards/render";
 
 const projectSize: Size = {
   width: 512,
@@ -27,19 +33,9 @@ const imageLayer: ImageLayer = {
   maxBounds: { width: projectSize.width }
 };
 
-function setFontSize(layer: TextLayer, value: string | number) {
-  if (typeof value === "number") {
-    layer.fontSize = `${value}px`;
-  } else {
-    layer.fontSize = value;
-  }
-}
-
 const project: Project = {
   layers: [imageLayer, textLayer],
   size: projectSize
 };
-
-setFontSize(textLayer, "20em");
 
 render(project);

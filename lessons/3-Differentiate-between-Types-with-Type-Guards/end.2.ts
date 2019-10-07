@@ -7,8 +7,8 @@ import {
   Position,
   Constraint,
   Layer
-} from "../common/types";
-import { render } from "../common/render";
+} from "./types";
+import { render } from "./render";
 
 const projectSize: Size = {
   width: 512,

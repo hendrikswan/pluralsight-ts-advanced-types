@@ -5,8 +5,7 @@ import {
   LayerType,
   Size,
   TextMeta,
-  ImageMeta,
-  Layer
+  ImageMeta
 } from "./types";
 import { render } from "./render";
 
@@ -36,21 +35,14 @@ const imageLayer: ImageLayer = {
   maxBounds: { width: projectSize.width }
 };
 
-function setMeta<T extends TextLayer | ImageLayer>(
-  layer: T,
-  meta: T extends TextLayer ? TextMeta : ImageMeta
-) {
+function setMeta(layer: TextLayer, meta: TextMeta): void;
+function setMeta(layer: ImageLayer, meta: ImageMeta): void;
+function setMeta(
+  layer: ImageLayer | TextLayer,
+  meta: ImageMeta | TextMeta
+): void {
   layer.meta = meta;
 }
-
-// function setMeta(layer: TextLayer, meta: TextMeta): void;
-// function setMeta(layer: ImageLayer, meta: ImageMeta): void;
-// function setMeta(
-//   layer: ImageLayer | TextLayer,
-//   meta: ImageMeta | TextMeta
-// ): void {
-//   layer.meta = meta;
-// }
 
 setMeta(imageLayer, {
   format: "png",

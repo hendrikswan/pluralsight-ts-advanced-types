@@ -3,8 +3,6 @@ import { createCanvas, loadImage, Canvas } from "canvas";
 import process from "process";
 import fs from "fs";
 import open from "open";
-// import imageSize from "image-size";
-// const sizeOf = require("image-size");
 const probe = require("probe-image-size");
 
 const BASE_IMAGE_PATH = `${process.env.ROOT}/lessons/common/images`;
@@ -67,7 +65,6 @@ async function exportPng(canvas: Canvas) {
 
 async function renderAsync(project: Project) {
   const canvas = createCanvas(project.size.width, project.size.height);
-  const ctx = canvas.getContext("2d");
 
   for (const layer of project.layers) {
     try {

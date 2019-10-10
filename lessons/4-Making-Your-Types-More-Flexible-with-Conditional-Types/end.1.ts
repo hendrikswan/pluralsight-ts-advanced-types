@@ -3,9 +3,12 @@ import {
   TextLayer,
   ImageLayer,
   LayerType,
-  Size
-} from "../common/types";
-import { render } from "../3-Differentiate-between-Types-with-Type-Guards/render";
+  Size,
+  TextMeta,
+  ImageMeta,
+  Layer
+} from "./types";
+import { render } from "./render";
 
 const projectSize: Size = {
   width: 512,
@@ -33,19 +36,28 @@ const imageLayer: ImageLayer = {
   maxBounds: { width: projectSize.width }
 };
 
-function setFontSize(layer: TextLayer, value: string | number) {
-  if (typeof value === "number") {
-    layer.fontSize = `${value}px`;
-  } else {
-    layer.fontSize = value;
-  }
+function setMeta(layer: TextLayer, meta: TextMeta): void;
+function setMeta(layer: ImageLayer, meta: ImageMeta): void;
+function setMeta(
+  layer: ImageLayer | TextLayer,
+  meta: ImageMeta | TextMeta
+): void {
+  layer.meta = meta;
 }
+
+setMeta(imageLayer, {
+  format: "png",
+  origin: "Download"
+});
+
+setMeta(textLayer, {
+  fontFoundry: "OS stock",
+  licenseExpiration: new Date(2020, 1, 1)
+});
 
 const project: Project = {
   layers: [imageLayer, textLayer],
   size: projectSize
 };
-
-setFontSize(textLayer, "20em");
 
 render(project);

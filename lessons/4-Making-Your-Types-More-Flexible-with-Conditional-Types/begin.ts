@@ -1,11 +1,5 @@
-import {
-  Project,
-  TextLayer,
-  ImageLayer,
-  LayerType,
-  Size
-} from "../common/types";
-import { render } from "../3-Differentiate-between-Types-with-Type-Guards/render";
+import { Project, TextLayer, ImageLayer, LayerType, Size } from "./types";
+import { render } from "./render";
 
 const projectSize: Size = {
   width: 512,

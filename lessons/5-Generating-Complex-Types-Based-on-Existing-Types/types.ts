@@ -23,6 +23,7 @@ export interface Layer {
   type: LayerType;
   rotation: number;
   position: Position;
+  lastUpdated?: Date;
 }
 
 export interface TextMeta {
@@ -56,4 +57,6 @@ export interface ImageLayer extends Layer {
 export interface Project {
   layers: Layer[];
   size: Size;
+  lastUpdated?: number;
+  lastAction?: string;
 }

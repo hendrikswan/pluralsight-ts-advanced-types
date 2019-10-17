@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "run-generator-lesson-5": "cross-env ROOT=./ ts-node ./lessons/10-Using-Generators-for-Functions-That-Can-Be-Paused-or-Resumed/lesson.5.ts"
+  },
   "devDependencies": {
     "@types/node": "^12.7.11"
   },
   "dependencies": {
     "canvas": "^2.6.0",
+    "cross-env": "^6.0.3",
     "image-size": "^0.8.3",
     "open": "^6.4.0",
     "probe-image-size": "^5.0.0",

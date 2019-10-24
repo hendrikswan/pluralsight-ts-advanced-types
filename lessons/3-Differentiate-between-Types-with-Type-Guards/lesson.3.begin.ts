@@ -45,10 +45,6 @@ const imageLayer = {
   maxBounds: { width: projectSize.width }
 };
 
-function isTextLayer(layer: Layer): layer is TextLayer {
-  return layer.type === LayerType.Text;
-}
-
 function setFontSize(layer: TextLayer, value: string | number) {
   if (typeof value === "number") {
     layer.fontSize = `${value}px`;
@@ -59,25 +55,7 @@ function setFontSize(layer: TextLayer, value: string | number) {
 
 function setFontSizeOnSelection(layers: Layer[], value: string | number) {
   layers.forEach(layer => {
-    if (isTextLayer(layer)) {
-      setFontSize(layer, value);
-    }
-  });
-}
-
-function isFunkyLayer(layer: Layer): layer is ImageLayer {
-  return layer.type === LayerType.Image;
-}
-
-function setSrc(layer: ImageLayer, value: string) {
-  layer.src = value;
-}
-
-function setSrcOnSelection(layers: Layer[], value: string) {
-  layers.forEach(layer => {
-    if (isFunkyLayer(layer)) {
-      setSrc(layer, value);
-    }
+    setFontSize(layer, value);
   });
 }
 

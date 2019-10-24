@@ -27,11 +27,17 @@ const imageLayer: ImageLayer = {
   maxBounds: { width: projectSize.width }
 };
 
-function setTextLayerProps(project: Project, id: string) {
-  const layer = project.layers.find(l => l.id === id)
+function setLayerProps<T extends TextLayer | ImageLayer>(
+  project: Project,
+  id: string,
+  props: Partial<T>
+) {
+  const layer = project.layers.find(l => l.id === id) as any;
 
   if (layer) {
-    layer.
+    Object.entries(props).forEach(([k, v]) => {
+      layer[k] = v;
+    });
   }
 }
 
@@ -39,5 +45,13 @@ const project: Project = {
   layers: [imageLayer, textLayer],
   size: projectSize
 };
+
+setLayerProps<TextLayer>(project, "10", {
+  text: "this is the updated text"
+});
+
+setLayerProps<ImageLayer>(project, "20", {
+  src: "ps-white.jpg"
+});
 
 render(project);

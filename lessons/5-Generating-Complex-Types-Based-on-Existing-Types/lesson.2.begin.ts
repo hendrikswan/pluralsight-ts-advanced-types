@@ -27,9 +27,27 @@ const imageLayer: ImageLayer = {
   maxBounds: { width: projectSize.width }
 };
 
+function setTextLayerProps(
+  project: Project,
+  id: string,
+  props: { [key: string]: any }
+) {
+  const layer = project.layers.find(l => l.id === id);
+
+  if (layer) {
+    Object.entries(props).forEach(([k, v]) => {
+      (layer as any)[k] = v;
+    });
+  }
+}
+
 const project: Project = {
   layers: [imageLayer, textLayer],
   size: projectSize
 };
+
+setTextLayerProps(project, "10", {
+  shouldnotwork: false
+});
 
 render(project);

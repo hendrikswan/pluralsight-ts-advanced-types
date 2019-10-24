@@ -11,8 +11,6 @@ const textLayer: TextLayer = {
   fontSize: "20px"
 };
 
-// type Foo<T> = T extends { a: infer U; b: infer U } ? U : never;
-
 function setText(layer: TextLayer, text: string) {
   layer.text = text;
   return layer;

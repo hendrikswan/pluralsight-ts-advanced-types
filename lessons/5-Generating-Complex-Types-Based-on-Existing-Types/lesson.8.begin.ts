@@ -1,4 +1,4 @@
-import { TextLayer, LayerType, Size } from "./types";
+import { TextLayer, LayerType } from "./types";
 
 const textLayer: TextLayer = {
   type: LayerType.Text,
@@ -21,5 +21,3 @@ function setColor(layer: TextLayer, color: string) {
 
 setText(textLayer, "Updated text");
 setColor(textLayer, "#fff");
-
-console.log(textLayer);

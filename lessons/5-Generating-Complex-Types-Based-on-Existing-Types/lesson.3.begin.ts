@@ -27,10 +27,10 @@ const imageLayer: ImageLayer = {
   maxBounds: { width: projectSize.width }
 };
 
-function setLayerProps<T extends TextLayer | ImageLayer>(
+function setTextLayerProps(
   project: Project,
   id: string,
-  props: Partial<T>
+  props: Partial<TextLayer>
 ) {
   const layer = project.layers.find(l => l.id === id) as any;
 
@@ -46,10 +46,8 @@ const project: Project = {
   size: projectSize
 };
 
-// the combination should not be possible
-setLayerProps<TextLayer>(project, "10", {
+setTextLayerProps(project, "10", {
   text: "this is the updated text"
-  // src: "ps-white.jpg"
 });
 
 render(project);

@@ -1,4 +1,4 @@
-import { Project, TextLayer, ImageLayer, LayerType, Size } from "./types";
+import { TextLayer, ImageLayer } from "./types";
 
 type LayerCombined = TextLayer & ImageLayer;
 type IgnoredProperties = "id" | "maxBounds" | "position" | "meta";
@@ -18,7 +18,8 @@ const fieldDescriptions: FieldDescriptions = {
   maxWidth: "The max width of the text layer",
   rotation: "The rotation angle of the layer between 0 and 360",
   type: "The type of the layer",
-  src: "The relative location to the image file"
+  src: "The relative location to the image file",
+  lastUpdated: new Date().toString()
 };
 
 Object.entries(fieldDescriptions).forEach(([field, description]) => {

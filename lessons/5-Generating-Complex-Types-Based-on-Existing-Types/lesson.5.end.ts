@@ -1,4 +1,4 @@
-import { Project, TextLayer, ImageLayer, LayerType, Size } from "./types";
+import { TextLayer, ImageLayer } from "./types";
 
 type FieldDescriptions = {
   [key in keyof (TextLayer & ImageLayer)]: string;

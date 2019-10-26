@@ -1,4 +1,6 @@
-function log(message: string, obj: any) {
+import { TextLayer, LayerType, Position } from "./types";
+
+function doLog(message: string, obj: any) {
   const objStr = obj.log ? obj.log(obj) : obj.toString();
   console.log(`${message} ${objStr}`);
 }
@@ -8,4 +10,4 @@ const layer = {
   log: (obj: { src: string }) => `An image layer with src: ${obj.src}`
 };
 
-log("The first layer: ", layer);
+doLog("The first layer: ", layer);

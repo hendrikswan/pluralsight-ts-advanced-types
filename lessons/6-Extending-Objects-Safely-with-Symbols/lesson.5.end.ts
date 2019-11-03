@@ -1,30 +1,31 @@
 import { TextLayer, LayerType, Position } from "./types";
 
-// in the logging library
-const logHandler = Symbol();
+class TextLayerClass implements TextLayer {
+  public type: LayerType.Text = LayerType.Text;
 
-function doLog(message: string, obj: any) {
-  const objStr = obj[logHandler] ? obj[logHandler](obj) : obj.toString();
-  console.log(`${message} ${objStr}`);
-}
+  constructor(
+    public maxWidth: number,
+    public position: Position,
+    public color: string,
+    public id: string,
+    public rotation: number,
+    public text: string,
+    public fontSize: string
+  ) {}
 
-function addLog<T>(obj: T, func: (obj: T) => string) {
-  (obj as any)[logHandler] = func;
-}
-
-// in the package consumer
-const layer = {
-  src: "dark.png"
-};
-
-addLog(layer, (obj: { src: string }) => `An image layer with src: ${obj.src}`);
-
-doLog("The first layer: ", layer);
-
-for (const key in layer) {
-  if (layer.hasOwnProperty(key)) {
-    const element = (layer as any)[key];
-    console.log(key);
-    console.log(element);
+  get [Symbol.toStringTag]() {
+    return `TextLayer ${this.id}`;
   }
 }
+
+const textLayer1: TextLayer = new TextLayerClass(
+  1000,
+  { x: 128, y: 208 },
+  "#e8166d",
+  "this is the id",
+  0,
+  "Advanced TypeScript",
+  "20px"
+);
+
+console.log("here is the text layer ", textLayer1.toString());

@@ -2,9 +2,9 @@ import { TextLayer, ImageLayer } from "./types";
 
 type LayerCombined = TextLayer & ImageLayer;
 type IgnoredProperties = "id" | "maxBounds" | "position" | "meta";
-type ExcludeIgnoredProperties<K> = K extends IgnoredProperties ? never : K;
+
 type LayerCombinedWithIgnored = {
-  [K in ExcludeIgnoredProperties<keyof LayerCombined>]: LayerCombined[K];
+  [K in Exclude<keyof LayerCombined, IgnoredProperties>]: LayerCombined[K];
 };
 
 type FieldDescriptions = {

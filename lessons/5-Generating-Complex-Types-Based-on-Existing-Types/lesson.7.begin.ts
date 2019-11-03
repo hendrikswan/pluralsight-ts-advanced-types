@@ -1,27 +1,23 @@
-import { TextLayer, ImageLayer } from "./types";
+import { TextLayer, LayerType } from "./types";
 
-type LayerCombined = TextLayer & ImageLayer;
-type IgnoredProperties = "id" | "maxBounds" | "position" | "meta";
-type ExcludeIgnoredProperties<K> = K extends IgnoredProperties ? never : K;
-type LayerCombinedWithIgnored = {
-  [K in ExcludeIgnoredProperties<keyof LayerCombined>]: LayerCombined[K];
+const textLayer: TextLayer = {
+  type: LayerType.Text,
+  maxWidth: 1000,
+  position: { x: 128, y: 208 },
+  color: "#e8166d",
+  id: "10",
+  rotation: 0,
+  text: "Advanced TypeScript",
+  fontSize: "20px"
 };
 
-type FieldDescriptions = {
-  [key in keyof LayerCombinedWithIgnored]: string;
-};
+function setText(layer: TextLayer, text: string) {
+  layer.text = text;
+}
 
-const fieldDescriptions: FieldDescriptions = {
-  text: "This is the default text",
-  color: "The color of the text",
-  fontSize: "The size of the font",
-  maxWidth: "The max width of the text layer",
-  rotation: "The rotation angle of the layer between 0 and 360",
-  type: "The type of the layer",
-  src: "The relative location to the image file",
-  lastUpdated: new Date().toString()
-};
+function setColor(layer: TextLayer, color: string) {
+  layer.color = color;
+}
 
-Object.entries(fieldDescriptions).forEach(([field, description]) => {
-  console.log(`${field}: ${description}`);
-});
+setText(textLayer, "Updated text");
+setColor(textLayer, "#fff");

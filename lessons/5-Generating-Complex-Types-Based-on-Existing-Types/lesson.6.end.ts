@@ -3,12 +3,8 @@ import { TextLayer, ImageLayer } from "./types";
 type LayerCombined = TextLayer & ImageLayer;
 type IgnoredProperties = "id" | "maxBounds" | "position" | "meta";
 
-type LayerCombinedWithIgnored = {
-  [K in Exclude<keyof LayerCombined, IgnoredProperties>]: LayerCombined[K];
-};
-
 type FieldDescriptions = {
-  [key in keyof LayerCombinedWithIgnored]: string;
+  [k in Exclude<keyof LayerCombined, IgnoredProperties>]: string;
 };
 
 const fieldDescriptions: FieldDescriptions = {

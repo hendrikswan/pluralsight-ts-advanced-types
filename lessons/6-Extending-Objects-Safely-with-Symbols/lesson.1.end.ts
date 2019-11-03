@@ -1,13 +1,21 @@
 import { TextLayer, LayerType, Position } from "./types";
 
 function doLog(message: string, obj: any) {
-  const objStr = obj.log ? obj.log(obj) : obj.toString();
+  const objStr = obj.reallyUniqueLog
+    ? obj.reallyUniqueLog(obj)
+    : obj.toString();
   console.log(`${message} ${objStr}`);
+}
+
+function addLog<T>(obj: T, func: (obj: T) => string) {
+  (obj as any).reallyUniqueLog = func;
 }
 
 const layer = {
   src: "dark.png",
-  log: (obj: { src: string }) => `An image layer with src: ${obj.src}`
+  log: true
 };
+
+addLog(layer, (obj: { src: string }) => `An image layer with src: ${obj.src}`);
 
 doLog("The first layer: ", layer);

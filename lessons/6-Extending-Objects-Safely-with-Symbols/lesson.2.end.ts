@@ -19,3 +19,10 @@ const layer = {
 addLog(layer, (obj: { src: string }) => `An image layer with src: ${obj.src}`);
 
 doLog("The first layer: ", layer);
+
+for (const key in layer) {
+  if (layer.hasOwnProperty(key)) {
+    const element = (layer as any)[key];
+    console.log(`${key}:${element}`);
+  }
+}

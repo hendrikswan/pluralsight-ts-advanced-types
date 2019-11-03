@@ -1,10 +1,13 @@
 import { TextLayer, LayerType, Position } from "./types";
 
 function doLog(message: string, obj: any) {
-  const objStr = obj.toString();
+  const objStr = obj.log ? obj.log(obj) : obj.toString();
   console.log(`${message} ${objStr}`);
 }
 
-doLog("this is the first message", {
-  src: "dark.png"
-});
+const layer = {
+  src: "dark.png",
+  log: true
+};
+
+doLog("The first layer: ", layer);

@@ -1,16 +1,18 @@
 import { TextLayer, LayerType, Position } from "./types";
 
+// in the logging library
+const logHandler = Symbol();
+
 function doLog(message: string, obj: any) {
-  const objStr = obj.reallyUniqueLog
-    ? obj.reallyUniqueLog(obj)
-    : obj.toString();
+  const objStr = obj[logHandler] ? obj[logHandler](obj) : obj.toString();
   console.log(`${message} ${objStr}`);
 }
 
 function addLog<T>(obj: T, func: (obj: T) => string) {
-  (obj as any).reallyUniqueLog = func;
+  (obj as any)[logHandler] = func;
 }
 
+// in the package consumer
 const layer = {
   src: "dark.png",
   log: true

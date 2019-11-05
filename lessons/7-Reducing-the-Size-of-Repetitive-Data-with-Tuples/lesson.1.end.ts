@@ -14,7 +14,7 @@ function hitTest(elem1: Element, elem2: Element) {
   );
 }
 
-const didHit1 = hitTest(
+const didHit = hitTest(
   {
     position: {
       x: 500,
@@ -37,4 +37,4 @@ const didHit1 = hitTest(
   }
 );
 
-console.log(didHit1);
+console.log(didHit);

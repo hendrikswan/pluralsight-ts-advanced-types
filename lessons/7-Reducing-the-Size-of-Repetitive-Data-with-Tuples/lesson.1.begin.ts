@@ -1,9 +1,11 @@
 import { Position, Size } from "./types";
 
-function hitTest(
-  elem1: { position: Position; size: Size },
-  elem2: { position: Position; size: Size }
-) {
+interface Element {
+  position: Position;
+  size: Size;
+}
+
+function hitTest(elem1: Element, elem2: Element) {
   return (
     elem1.position.x < elem2.position.x + elem2.size.width &&
     elem1.position.x + elem1.size.width > elem2.position.x &&

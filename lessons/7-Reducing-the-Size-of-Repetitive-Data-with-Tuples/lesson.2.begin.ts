@@ -1,40 +1,14 @@
 import { Position, Size } from "./types";
 
-interface Element {
-  position: Position;
-  size: Size;
+// Element -> [x,y,w,h]
+
+function hitTest(elem1: number[], elem2: number[]) {
+  const [x1, y1, w1, h1] = elem1;
+  const [x2, y2, w2, h2] = elem2;
+
+  return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
 }
 
-function hitTest(elem1: Element, elem2: Element) {
-  return (
-    elem1.position.x < elem2.position.x + elem2.size.width &&
-    elem1.position.x + elem1.size.width > elem2.position.x &&
-    elem1.position.y < elem2.position.y + elem2.size.height &&
-    elem1.position.y + elem1.size.height > elem2.position.y
-  );
-}
+const didHit = hitTest([301, 200, 200, 200], [500, 200, 200, 200]);
 
-const didHit1 = hitTest(
-  {
-    position: {
-      x: 500,
-      y: 200
-    },
-    size: {
-      height: 200,
-      width: 200
-    }
-  },
-  {
-    position: {
-      x: 300,
-      y: 200
-    },
-    size: {
-      height: 200,
-      width: 200
-    }
-  }
-);
-
-console.log(didHit1);
+console.log(didHit);

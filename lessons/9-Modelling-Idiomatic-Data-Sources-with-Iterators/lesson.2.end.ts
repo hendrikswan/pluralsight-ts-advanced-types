@@ -8,7 +8,13 @@ import {
 } from "./types";
 import { render } from "./render";
 
-export function renderIterable(iterableProject: ProjectClass) {
+export interface IterableProject extends Iterable<Layer> {
+  size: Size;
+  lastUpdated?: number;
+  lastAction?: string;
+}
+
+export function renderIterable(iterableProject: IterableProject) {
   let layers: Layer[] = [];
 
   for (const layer of iterableProject) {
@@ -25,8 +31,29 @@ export function renderIterable(iterableProject: ProjectClass) {
   render(project);
 }
 
-class ProjectClass {
+class ProjectClass implements IterableProject {
   constructor(public size: Size, public layers: { [layerId: string]: Layer }) {}
+
+  [Symbol.iterator](): Iterator<Layer> {
+    let pointer = 0;
+    let layers = Object.values(this.layers);
+
+    return {
+      next(): IteratorResult<Layer> {
+        if (pointer < layers.length) {
+          return {
+            done: false,
+            value: layers[pointer++]
+          };
+        } else {
+          return {
+            done: true,
+            value: null
+          };
+        }
+      }
+    };
+  }
 }
 
 const projectSize: Size = {
